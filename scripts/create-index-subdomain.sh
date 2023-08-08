@@ -1,4 +1,4 @@
-echo '[+] Criando index SUBDOMAIN'
+echo '\033[34m[+] Criando index SUBDOMAIN\n\033[0m'
 curl -XPUT --insecure --user 'admin:admin' https://localhost:9200/$1-subdomain -H "Content-Type: application/json" -d @- <<EOF
 {
     "mappings":{
@@ -15,7 +15,7 @@ curl -XPUT --insecure --user 'admin:admin' https://localhost:9200/$1-subdomain -
 }
 EOF
 
-echo '[+] Criando index PORT SCANNER'
+echo '\033[34m[+] Criando index PORT SCANNER\n\033[0m'
 curl -XPUT --insecure --user 'admin:admin' https://localhost:9200/$1-portscanner -H "Content-Type: application/json" -d @- <<EOF
 {
     "mappings":{
@@ -37,7 +37,7 @@ curl -XPUT --insecure --user 'admin:admin' https://localhost:9200/$1-portscanner
 }
 EOF
 
-echo '[+] Criando index WEB ENUM'
+echo '\033[34m[+] Criando index WEB ENUM\n\033[0m'
 curl -XPUT --insecure --user 'admin:admin' https://localhost:9200/$1-webenum -H "Content-Type: application/json" -d @- <<EOF
 {
     "mappings":{
@@ -58,7 +58,7 @@ curl -XPUT --insecure --user 'admin:admin' https://localhost:9200/$1-webenum -H 
 }
 EOF
 
-echo '[+] Criando index WEB VULN'
+echo '\033[34m[+] Criando index WEB VULN\n\033[0m'
 curl -XPUT --insecure --user 'admin:admin' https://localhost:9200/$1-webvuln -H "Content-Type: application/json" -d @- <<EOF
 {
     "mappings":{
@@ -83,7 +83,7 @@ curl -XPUT --insecure --user 'admin:admin' https://localhost:9200/$1-webvuln -H 
 }
 EOF
 
-echo '[+] Criando index INFRA VULN'
+echo '\033[34m[+] Criando index INFRA VULN\n\033[0m'
 curl -XPUT --insecure --user 'admin:admin' https://localhost:9200/$1-infravuln -H "Content-Type: application/json" -d @- <<EOF
 {
     "mappings":{
