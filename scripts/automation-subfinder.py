@@ -53,7 +53,7 @@ def execute():
     subprocess.check_output(f'docker run --entrypoint bash --rm --name {container_name} -v /docker/data/{target}/tmp:/data kalilinux/kali-tools:2.0 -c "subfinder -silent -d {domain} -o /data/{output}" || true', shell=True)
 
 def parse():
-    with open(f'/docker/data/tmp/{target}/{output}') as file:
+    with open(f'/docker/data/{target}/tmp/{output}') as file:
         for line in file:
             line = line.rstrip('\n')
             ip = get_ip(line)

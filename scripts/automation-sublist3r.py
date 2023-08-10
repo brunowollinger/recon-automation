@@ -1,13 +1,10 @@
 import sys
-import datetime
 import socket
 import requests
 import uuid
 import subprocess
-import shutil
 import json
 import time
-import pathlib
 
 requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding missing certificates
 
@@ -53,7 +50,7 @@ def execute():
     subprocess.check_output(f'docker run --entrypoint bash --rm --name {container_name} -v /docker/data/{target}/tmp:/data kalilinux/kali-tools:2.0 -c "sublist3r -d {domain} -o /data/{output}" || true', shell=True)
 
 def parse():
-    with open(f'/docker/data/tmp/{target}/{output}') as file:
+    with open(f'/docker/data/{target}/tmp/{output}') as file:
         for line in file:
             line = line.rstrip('\n')
             ip = get_ip(line)
