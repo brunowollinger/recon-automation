@@ -7,10 +7,12 @@ import json
 from time import strftime
 from pathlib import Path
 
+requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding missing certificates
+
 target = sys.argv[1]
 ip = sys.argv[2]
 headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
-url = f'https://localhost:9200/{target}-portscan/_doc?refresh'
+url = f'https://localhost:9200/{target}-portscanner/_doc?refresh'
 url_get = f'https://localhost:9200/{target}-subdomain/_search'
 auth=('admin', 'admin')
 hora = strftime("%Y-%m-%dT%H:%M:%S")
