@@ -5,7 +5,7 @@ import json
 
 target = sys.argv[1]
 headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
-url = f'https://localhost:9200/{target}-portscan/_search'
+url = f'https://localhost:9200/{target}-portscanner/_search'
 auth=('admin', 'admin')
 list_ip = []
 list_serv = []
