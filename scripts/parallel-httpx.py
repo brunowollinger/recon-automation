@@ -4,7 +4,6 @@ import sys
 import requests
 import os
 import json
-from time import strftime
 
 requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding missing certificates
 
@@ -23,7 +22,9 @@ def consulta_subdomain():
 			dic_ip[(str(x['_source']['server.domain']))] = str(x['_source']['server.ip'])
 
 def parallel():
-    os.system('rm -rf /docker/data/teste/tmp/httpx_parallel.log')
+    if os.path.isfile(f'/docker/data/{target}/tmp/httpx_parallel.log'):
+        os.system(f'rm -rf /docker/data/{target}/tmp/httpx_parallel.log')
+    os.system(f'touch /docker/data/{target}/tmp/httpx_parallel.log')
     with open (f'/docker/data/{target}/tmp/httpx_parallel.log','a') as file:
         for sub in dic_ip:
             file.write(f'python3 /docker/scripts/automation-httpx.py {target} {sub} {dic_ip[sub]}\n')

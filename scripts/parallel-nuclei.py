@@ -19,7 +19,9 @@ def consulta():
 			dic_sistemas[x['_source']['url.original']] = [x['_source']['server.domain'],x['_source']['server.port'],x['_source']['url.path']]
 
 def parallel():
-    os.system(f'rm -rf /docker/data/{target}/tmp/nuclei_parallel.log')
+    if os.path.isfile(f'/docker/data/{target}/tmp/nuclei_parallel.log'):
+        os.system(f'rm -rf /docker/data/{target}/tmp/nuclei_parallel.log')
+    os.system(f'touch /docker/data/{target}/tmp/nuclei_parallel.log')
     with open (f'/docker/data/{target}/tmp/nuclei_parallel.log','a') as file:
         for sis in dic_sistemas:
             file.write(f'python3 /docker/scripts/automation-nuclei.py {target} {sis} {dic_sistemas[sis][0]} {dic_sistemas[sis][1]} {dic_sistemas[sis][2]}\n')

@@ -20,14 +20,14 @@ def consulta():
 			list_sistemas.append(x['_source']['url.original'])
 
 def parallel():
-    try:
-        os.system(f'rm -rf /docker/data/{target}/tmp/nikto_parallel.log')
-    except:    
-        with open (f'/docker/data/{target}/tmp/nikto_parallel.log','a') as file:
-            for sis in list_sistemas:
-                file.write(f'python3 /docker/scripts/automation-nikto.py {target} {sis}\n')
-        print("\033[34m[+] PROCESSANDO NIKTO\n\033[0m")
-        os.system(f'cat /docker/data/{target}/tmp/nikto_parallel.log | parallel -u')
+    if os.path.isfile(f'/docker/data/{target}/tmp/nikto_parallel.log'):
+        os.system(f'rm -f /docker/data/{target}/tmp/nikto_parallel.log')
+    os.system(f'touch /docker/data/{target}/tmp/nikto_parallel.log')
+    with open (f'/docker/data/{target}/tmp/nikto_parallel.log','a') as file:
+        for sis in list_sistemas:
+            file.write(f'python3 /docker/scripts/automation-nikto.py {target} {sis}\n')
+    print("\033[34m[+] PROCESSANDO NIKTO\n\033[0m")
+    os.system(f'cat /docker/data/{target}/tmp/nikto_parallel.log | parallel -u')
 
 def main():
    consulta()

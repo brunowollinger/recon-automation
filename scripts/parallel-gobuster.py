@@ -3,6 +3,8 @@ import requests
 import os
 import json
 
+requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding missing certificates
+
 target = sys.argv[1]
 headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
 url = f'https://localhost:9200/{target}-webenum/_search'
@@ -18,7 +20,9 @@ def consulta():
 			dic_sistemas[x['_source']['url.original']] = [x['_source']['server.domain'],x['_source']['server.ip'],x['_source']['server.port'],x['_source']['network.protocol']]
 
 def parallel():
-    os.system(f'rm -rf /docker/data/teste/tmp/gobuster_parallel.log')
+    if os.path.isfile(f'/docker/data/{target}/tmp/gobuster_parallel.log'):
+        os.system(f'rm -rf /docker/data/{target}/tmp/gobuster_parallel.log')
+    os.system(f'touch /docker/data/{target}/tmp/gobuster_parallel.log')
     with open (f'/docker/data/{target}/tmp/gobuster_parallel.log','a') as file:
         for sis in dic_sistemas:
             file.write(f'python3 /docker/scripts/automation-gobuster.py {target} {dic_sistemas[sis][0]} {dic_sistemas[sis][1]} {sis} {dic_sistemas[sis][3]} {str(dic_sistemas[sis][2])}\n')
