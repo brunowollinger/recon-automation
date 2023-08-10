@@ -1,12 +1,13 @@
 import requests
 import json
 
-def main():
-    with open('telegram-credentials.json', 'r') as file:
+def sendMessage():
+    with open('/docker/scripts/telegram-credentials.json', 'r') as file:
         credentials = json.load(file)
-    APIurl = f'https://api.telegram.org/bot{credentials["token"]}/sendMessage'
-    response = requests.post(APIurl, json={'chat_id': f'{credentials["chat_id"]}', 'text': 'Hello Bot, again!'})
-    print(response.text)
+    apiurl = f'https://api.telegram.org/bot{credentials["token"]}/sendMessage'
+    response = requests.post(apiurl, json={'chat_id': f'{credentials["chat_id"]}', 'text': 'Hello Bot, again!'})
+    if response.status_code == 200:
+        print("\033[32m[v] Mensagem enviada.\n\033[0m")
 
 if __name__ == '__main__':
-    main()
+    sendMessage()
