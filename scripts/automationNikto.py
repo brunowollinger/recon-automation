@@ -5,7 +5,6 @@ import subprocess
 import uuid
 import json
 from time import strftime
-from pathlib import Path
 
 requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding missing certificates
 

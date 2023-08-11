@@ -1,13 +1,10 @@
 import sys
-import datetime
 import socket
 import requests
 import uuid
 import subprocess
-import shutil
 import json
 import time
-import pathlib
 
 requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding missing certificates
 
