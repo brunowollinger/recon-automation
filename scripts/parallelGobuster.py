@@ -25,7 +25,7 @@ def parallel():
     os.system(f'touch /docker/data/{target}/tmp/gobuster_parallel.log')
     with open (f'/docker/data/{target}/tmp/gobuster_parallel.log','a') as file:
         for sis in dic_sistemas:
-            file.write(f'python3 /docker/scripts/automation-gobuster.py {target} {dic_sistemas[sis][0]} {dic_sistemas[sis][1]} {sis} {dic_sistemas[sis][3]} {str(dic_sistemas[sis][2])}\n')
+            file.write(f'python3 /docker/scripts/automationGobuster.py {target} {dic_sistemas[sis][0]} {dic_sistemas[sis][1]} {sis} {dic_sistemas[sis][3]} {str(dic_sistemas[sis][2])}\n')
     print("\033[34m[+] PROCESSANDO HTTPX\n\033[0m")
     os.system(f'cat /docker/data/{target}/tmp/gobuster_parallel.log | parallel -u')
 

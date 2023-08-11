@@ -27,7 +27,7 @@ def parallel():
     os.system(f'touch /docker/data/{target}/tmp/httpx_parallel.log')
     with open (f'/docker/data/{target}/tmp/httpx_parallel.log','a') as file:
         for sub in dic_ip:
-            file.write(f'python3 /docker/scripts/automation-httpx.py {target} {sub} {dic_ip[sub]}\n')
+            file.write(f'python3 /docker/scripts/automationHttpx.py {target} {sub} {dic_ip[sub]}\n')
     print("\033[34m[+] PROCESSANDO HTTPX\n\033[0m")
     os.system(f'cat /docker/data/{target}/tmp/httpx_parallel.log | parallel -u')
 

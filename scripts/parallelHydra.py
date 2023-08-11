@@ -35,7 +35,7 @@ def parallel():
                     if(x['_source']['server.port'] not in list_serv):
                         list_serv.append(x['_source']['server.port'])    
                         if(x['_source']['network.protocol'] in servicos):
-                            file.write(f'python3 /docker/scripts/automation-hydra.py {target} {i} {x["_source"]["server.port"]} {x["_source"]["network.protocol"]}\n')
+                            file.write(f'python3 /docker/scripts/automationHydra.py {target} {i} {x["_source"]["server.port"]} {x["_source"]["network.protocol"]}\n')
     print("\033[34m[+] PROCESSANDO HYDRA\n\033[0m")
     os.system(f'cat /docker/data/{target}/tmp/hydra_parallel.log | parallel -u')
 
