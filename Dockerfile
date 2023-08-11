@@ -8,8 +8,6 @@ RUN apt update
 
 RUN apt install git golang python3 python3-pip sublist3r subfinder nmap nikto assetfinder hydra nuclei gobuster -y
 
-RUN apt remove httpx -y
-
 RUN python3 -m pip install uuid
 
 RUN go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
