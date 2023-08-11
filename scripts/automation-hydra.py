@@ -27,7 +27,7 @@ def executa(ip,porta,servico):
 
 def parse():
     executa(ip,porta,servico)
-    with open(f'/docker/data/{target}/tmp/'+saida) as jsonfile:
+    with open(f'/docker/data/{target}/tmp/{saida}') as jsonfile:
         jsondata = json.load(jsonfile)
         for i in jsondata['results']:
             dic_infra['server.address'] = i['host']
