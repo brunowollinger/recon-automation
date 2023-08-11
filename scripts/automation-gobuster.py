@@ -5,6 +5,8 @@ import uuid
 import json
 from time import strftime
 
+requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding missing certificates
+
 target = sys.argv[1]
 subdomain = sys.argv[2]
 ip = sys.argv[3]
@@ -19,7 +21,7 @@ container_name = f'{target}-{x}-gobuster'
 dic_web = {}
 
 def executa(sistema):
-    result = subprocess.check_output(f'docker run --entrypoint bash --rm --name {container_name} -v /docker/scripts/:/scripts kalilinux/kali-tools:2.0 -c "gobuster dir -u \"{sistema}\" -w /scripts/webdir.txt -q" || true', shell=True)
+    result = subprocess.check_output(f'docker run --entrypoint bash --rm --name {container_name} -v /usr/share/wordlists/dirb/:/scripts:ro kalilinux/kali-tools:2.0 -c "gobuster dir --no-color -qu "{sistema}" -w /scripts/common.txt" || true', shell=True)
     return(result.decode("utf-8").rstrip('\n').replace(' ','').split('\n'))
 
 def parse():
@@ -29,7 +31,7 @@ def parse():
         dic_web['server.domain'] = subdomain
         dic_web['server.ip'] = ip 
         dic_web['network.protocol'] = sys.argv[5]
-        dic_web['url.path'] = uri.replace('\r','').split('(')[0]
+        dic_web['url.path'] = uri.replace('\r\x1b[2K','').split('(')[0]
         dic_web['http.response.status_code'] = uri.split(':')[1].split(')')[0]
         dic_web['url.original'] = sistema
         dic_web['server.port'] = sys.argv[6]
