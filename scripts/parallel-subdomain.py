@@ -17,7 +17,7 @@ def parallel():
     os.system(f'cat /docker/data/{target}/tmp/subdomain_parallel.log | parallel -u')
 
 def main():
-   parallel()
+    parallel()
 
 if __name__ == '__main__':
     main()
