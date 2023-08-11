@@ -3,6 +3,8 @@ import requests
 import os
 import json
 
+requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding missing certificates
+
 target = sys.argv[1]
 headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
 url = f'https://localhost:9200/{target}-webenum/_search'
