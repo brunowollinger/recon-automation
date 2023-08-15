@@ -26,7 +26,7 @@ def parallel():
 	with open (f'/docker/data/{target}/tmp/nmap_parallel.log','w') as file:
 		for ip in list_ip:
 			file.write(f'python3 /docker/scripts/automationNmap.py {target} {ip}\n')
-	print("\033[34m[+] PROCESSANDO NMAP\n\033[0m")
+	print("\033[34m[+] PROCESSANDO NMAP\033[0m")
 	os.system(f'cat /docker/data/{target}/tmp/nmap_parallel.log | parallel -u')
 
 def main():

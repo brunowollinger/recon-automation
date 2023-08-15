@@ -26,7 +26,7 @@ def parallel():
     with open (f'/docker/data/{target}/tmp/wayback_parallel.log','a') as file:
         for sis in dic_sistemas:
             file.write(f'python3 /docker/scripts/automationWayback.py {target} {sis} {dic_sistemas[sis][0]} {dic_sistemas[sis][1]}\n')
-    print("\033[34m[+] PROCESSANDO WAYBACKURLS\n\033[0m")
+    print("\033[34m[+] PROCESSANDO WAYBACKURLS\033[0m")
     os.system(f'cat /docker/data/{target}/tmp/wayback_parallel.log | parallel -u')
 
 def main():

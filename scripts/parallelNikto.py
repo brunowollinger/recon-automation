@@ -26,7 +26,7 @@ def parallel():
     with open (f'/docker/data/{target}/tmp/nikto_parallel.log','a') as file:
         for sis in list_sistemas:
             file.write(f'python3 /docker/scripts/automationNikto.py {target} {sis}\n')
-    print("\033[34m[+] PROCESSANDO NIKTO\n\033[0m")
+    print("\033[34m[+] PROCESSANDO NIKTO\033[0m")
     os.system(f'cat /docker/data/{target}/tmp/nikto_parallel.log | parallel -u')
 
 def main():

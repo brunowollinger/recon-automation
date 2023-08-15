@@ -13,7 +13,7 @@ def parallel():
         file.write(f'python3 /docker/scripts/automationSubfinder.py {target} {domain}\n')
         # Sublist3r will not be executed because it gives no response back
         # file.write(f'python3 /docker/scripts/automationSublist3r.py {target} {domain}\n')
-    print("\033[34m[+] PROCESSANDO SUBDOMAIN\n\033[0m")
+    print("\033[34m[+] PROCESSANDO SUBDOMAIN\033[0m")
     os.system(f'cat /docker/data/{target}/tmp/subdomain_parallel.log | parallel -u')
 
 def main():

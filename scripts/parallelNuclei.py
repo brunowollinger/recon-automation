@@ -27,7 +27,7 @@ def parallel():
     with open (f'/docker/data/{target}/tmp/nuclei_parallel.log','a') as file:
         for sis in dic_sistemas:
             file.write(f'python3 /docker/scripts/automationNuclei.py {target} {sis} {dic_sistemas[sis][0]} {dic_sistemas[sis][1]} {dic_sistemas[sis][2]}\n')
-    print("\033[34m[+] PROCESSANDO NUCLEI\n\033[0m")
+    print("\033[34m[+] PROCESSANDO NUCLEI\033[0m")
     os.system(f'cat /docker/data/{target}/tmp/nuclei_parallel.log | parallel -u')
 
 def main():
