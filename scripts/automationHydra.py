@@ -52,7 +52,7 @@ def parse():
             }
             r = requests.post(url, headers=headers, auth=auth, data=json.dumps(data), verify=False)
             if r.status_code == 201:
-                print('\033[32m [OK] Entry added successfully\033[0m')
+                print('\033[32m[OK] Entry added successfully\033[0m')
                 continue
             print(f'\033[31m [ERROR] {r.status_code}, Entry not added\033[0m')
             print(data)
