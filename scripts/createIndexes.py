@@ -101,7 +101,7 @@ def delete():
     for index in indexes:
         response = requests.delete(url=f'{url}{index}', headers=headers, auth=auth, verify=False).json()
         if 'acknowledged' in response.keys() and response['acknowledged'] == True:
-            print(f'\033[31m[+] Excluindo Index {index}\033[0m')
+            print(f'\033[31m[x] Excluindo Index {index}\033[0m')
 
 def create():
     for index in indexes:
