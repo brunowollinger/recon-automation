@@ -14,6 +14,9 @@ def main():
     if not index:
         print('\033[31mError, missing argument: Index\033[0m')
     response = requests.get(url=url, headers=headers, auth=auth, data=json.dumps(data), verify=False).json()
+    if response['hits']['total']['value'] == 0:
+        print('\033[31m0 Entries Found\033[0m')
+        return
     for entry in response['hits']['hits']:
         print(json.dumps(entry['_source'], indent=2))
     
