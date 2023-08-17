@@ -1,5 +1,4 @@
 ﻿data/
-check-list.txt
-passwords.txt
-users.txt
 scripts/__pycache__
+*.txt
+secrets/
