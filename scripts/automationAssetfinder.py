@@ -1,4 +1,5 @@
 import sys
+import authSetup
 import socket
 import requests
 import uuid
@@ -10,11 +11,11 @@ requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding mis
 
 target = sys.argv[1]
 domain = sys.argv[2]
-headers = {'Accept': 'application/json', 'Content-Type': 'application/json'}
+headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
+auth = authSetup.getCredentials()
 url = f'https://localhost:9200/{target}-subdomain/_doc?refresh'
 hora = time.strftime("%Y-%m-%dT%H:%M:%S%Z")
 scanner = 'assetfinder'
-auth = ('admin', 'admin')
 x = str(uuid.uuid1()).split('-')[0]
 container_name = f'{target}{x}-assetfinder'
 output = f'assetfinder-{x}.txt'

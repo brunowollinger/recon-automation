@@ -1,4 +1,5 @@
 import sys
+import authSetup
 import os
 
 target = sys.argv[1]

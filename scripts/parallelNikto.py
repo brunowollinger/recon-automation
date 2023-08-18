@@ -1,4 +1,5 @@
 import sys
+import authSetup
 import requests
 import os
 import json
@@ -7,8 +8,8 @@ requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding mis
 
 target = sys.argv[1]
 headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
+auth = authSetup.getCredentials()
 url = f'https://localhost:9200/{target}-webenum/_search'
-auth=('admin', 'admin')
 list_sistemas = []
 
 def consulta():

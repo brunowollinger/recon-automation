@@ -1,12 +1,13 @@
 import requests
 import sys
 import json
+import authSetup
 
 requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding missing certificates
 
 target = sys.argv[1]
 headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
-auth = ('admin', 'admin')
+auth = authSetup.getCredentials()
 url = 'https://localhost:9200/'
 mappings = {
 f'{target}-subdomain': {

@@ -1,4 +1,5 @@
 import sys
+import authSetup
 import requests
 import subprocess
 import uuid
@@ -12,8 +13,8 @@ subdomain = sys.argv[2]
 ip = sys.argv[3]
 sistema = sys.argv[4]
 headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
+auth = authSetup.getCredentials()
 url = f'https://localhost:9200/{target}-webenum/_doc?refresh'
-auth=('admin', 'admin')
 hora = strftime("%Y-%m-%dT%H:%M:%S%Z")
 scanner = 'gobuster'
 x = str(uuid.uuid1()).split('-')[0]

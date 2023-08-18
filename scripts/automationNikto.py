@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 import sys
+import authSetup
 import requests
 import subprocess
 import uuid
@@ -11,8 +12,8 @@ requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding mis
 target = sys.argv[1]
 sistema = sys.argv[2]
 headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
+auth = authSetup.getCredentials()
 url = f'https://localhost:9200/{target}-webvuln/_doc?refresh'
-auth=('admin', 'admin')
 hora = strftime("%Y-%m-%dT%H:%M:%S%Z")
 scanner = 'nikto'
 dic_web = {}

@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 import sys
+import authSetup
 import requests
 import subprocess
 import uuid
@@ -11,9 +12,9 @@ requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding mis
 target = sys.argv[1]
 ip = sys.argv[2]
 headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
+auth = authSetup.getCredentials()
 url = f'https://localhost:9200/{target}-portscanner/_doc?refresh'
 url_get = f'https://localhost:9200/{target}-subdomain/_search'
-auth=('admin', 'admin')
 hora = strftime("%Y-%m-%dT%H:%M:%S")
 scanner = 'nmap'
 x = str(uuid.uuid1()).split('-')[0]

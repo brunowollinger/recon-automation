@@ -1,10 +1,13 @@
 import sys
+import authSetup
 import os
 import telegramBot
 
 def main():
     target = sys.argv[1]
     domain = sys.argv[2]
+
+    authSetup.setCredentials()
 
     os.system(f'python3 /docker/scripts/createIndexes.py {target}')
 

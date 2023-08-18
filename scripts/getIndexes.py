@@ -3,7 +3,7 @@ import requests
 requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding missing certificates
 
 headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
-auth = ('admin', 'admin')
+auth = authSetup.getCredentials()
 url = 'https://localhost:9200/_cat/indices'
 
 def getIndexes():
