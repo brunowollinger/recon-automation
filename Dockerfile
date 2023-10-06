@@ -1,6 +1,6 @@
 FROM kalilinux/kali-rolling:latest
 
-WORKDIR /scritps
+WORKDIR /scripts
 
 WORKDIR /data
 
