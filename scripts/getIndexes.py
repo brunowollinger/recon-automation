@@ -1,4 +1,5 @@
 import requests
+import authSetup
 
 requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding missing certificates
 
