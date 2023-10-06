@@ -16,16 +16,18 @@ def main():
     os.system(f'mkdir -p /docker/data/{target}/tmp')
 
     os.system(f'python3 /docker/scripts/parallelSubdomain.py {target} {domain}')
-    telegramBot.sendMessage(f'Target: {target} Step: Subdomain Enumeration Status: Complete')
+    # telegramBot.sendMessage(f'Target: {target} Step: Subdomain Enumeration Status: Complete')
     os.system(f'python3 /docker/scripts/parallelHttpx.py {target}')
     os.system(f'python3 /docker/scripts/parallelWayback.py {target}')
+    # GoBuster require a wordlist
     os.system(f'python3 /docker/scripts/parallelGobuster.py {target}')
-    telegramBot.sendMessage(f'Target: {target} Step: Web Enumeration Status: Complete')
+    # telegramBot.sendMessage(f'Target: {target} Step: Web Enumeration Status: Complete')
     os.system(f'python3 /docker/scripts/parallelNmap.py {target}')
-    telegramBot.sendMessage(f'Target: {target} Step: Port Scanning Status: Complete')
+    # telegramBot.sendMessage(f'Target: {target} Step: Port Scanning Status: Complete')
     os.system(f'python3 /docker/scripts/parallelNikto.py {target}')
     os.system(f'python3 /docker/scripts/parallelNuclei.py {target}')
-    telegramBot.sendMessage(f'Target: {target} Step: Web Vulnerability Scanning Status: Complete')
+    # telegramBot.sendMessage(f'Target: {target} Step: Web Vulnerability Scanning Status: Complete')
+    # Hydra require a wordlist
     # os.system(f'python3 /docker/scripts/parallelHydra.py {target}')
     # telegramBot.sendMessage(f'Target: {target} Step: Infrastructure Vulnerability Scanning Status: Complete')
 
