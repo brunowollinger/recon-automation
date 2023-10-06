@@ -27,6 +27,9 @@ def executa(sistema):
 
 def parse():
     list_uri = executa(sistema)
+    if len(list_uri) == 0:
+        print(f'\033[31m[ERROR] No results returned\033[0m')
+        return
     for uri in list_uri:
         dic_web['server.address'] = subdomain
         dic_web['server.domain'] = subdomain
@@ -54,7 +57,7 @@ def parse():
         if r.status_code == 201:
             print('\033[32m[OK] Entry added successfully\033[0m')
             continue
-        print(f'\033[31m [ERROR] {r.status_code}, Entry not added\033[0m')
+        print(f'\033[31m[ERROR] {r.status_code}, Entry not added\033[0m')
         print(data)
 
 def main():
