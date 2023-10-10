@@ -23,7 +23,7 @@ saida = 'nmap-'+x+'.xml'
 dic_ports = {}
 
 def executa():
-    subprocess.check_output(f'docker run --entrypoint bash --rm --name {container_name} -v /docker/data/{target}/tmp:/data kalilinux/kali-tools:2.0 -c "nmap -sSV -Pn {ip} -oX /data/{saida}" || true', shell=True)
+    subprocess.check_output(f'docker run --entrypoint bash --rm --name {container_name} -v /docker/data/{target}/tmp:/data kalilinux/kali-tools:2.0 -c "nmap -sSV -O -Pn {ip} -oX /data/{saida}" || true', shell=True)
 
 def consulta(ip):
 	data = {"size":10000}
@@ -35,10 +35,17 @@ def consulta(ip):
 
 def parse():
     tree = ET.parse(f'/docker/data/{target}/tmp/{saida}')
+    dic_ports['os'] = 'Not Found'
     root = tree.getroot()
     for i in root.iter('nmaprun'):
         for nmaprun in i:
             if(nmaprun.tag == 'host'):
+                os = nmaprun.find('os')
+                if os is None:
+                    dic_ports['os'] = 'Not Found'
+                else:
+                    osmatch = os.find('osmatch')
+                    dic_ports['os'] = osmatch.attrib['name']
                 for host in nmaprun:
                     if(host.tag == 'address'):
                         if(':' not in host.attrib['addr']):
@@ -78,7 +85,8 @@ def parse():
                     				            'network.transport':dic_ports['network.transport'],
                     				            'network.type':dic_ports['network.type'],
                     				            'application.version.number':dic_ports['application.version.number'],
-                    				            'vulnerability.scanner.vendor':scanner
+                    				            'vulnerability.scanner.vendor':scanner,
+                                                'os.full':dic_ports['os']
             				                    }
                                         r = requests.post(url, headers=headers, auth=auth, data=json.dumps(data), verify=False)
                                         if r.status_code == 201:
