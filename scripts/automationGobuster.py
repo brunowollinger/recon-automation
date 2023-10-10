@@ -27,9 +27,6 @@ def executa(sistema):
 
 def parse():
     list_uri = executa(sistema)
-    if len(list_uri) == 0:
-        print(f'\033[31m[ERROR] No results returned\033[0m')
-        return
     for uri in list_uri:
         dic_web['server.address'] = subdomain
         dic_web['server.domain'] = subdomain
