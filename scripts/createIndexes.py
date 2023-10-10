@@ -37,7 +37,8 @@ f'{target}-portscanner': {
             "application.version.number": {"type": "keyword"},
             "network.transport": {"type": "keyword"},
             "network.type": {"type": "keyword"},
-            "vulnerability.scanner.vendor": {"type": "keyword"}
+            "vulnerability.scanner.vendor": {"type": "keyword"},
+            "os.full": {"type": "keyword"}
         }
     }
 },
