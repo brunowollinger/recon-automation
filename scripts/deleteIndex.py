@@ -6,11 +6,11 @@ requests.packages.urllib3.disable_warnings() # Disable SSL warning regarding mis
 
 headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
 auth = authSetup.getCredentials()
-url = f'https://localhost:9200/{index}'
 
 def main():
     try:
         index = sys.argv[1]
+        url = f'https://localhost:9200/{index}'
     except IndexError:
         print('Error - Argument Missing: Index Name')
     else:
